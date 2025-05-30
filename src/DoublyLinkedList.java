@@ -33,6 +33,47 @@ public class DoublyLinkedList<T> {
         }
     }
 
+    public void addAtPosition(int position, T value) {
+        if (position <= 0 || isEmpty()) {
+            addAtFront(value);
+            return;
+        }
+
+        DoubleNode<T> n = new DoubleNode<>(null, value, null);
+        DoubleNode<T> cn = head;
+        DoubleNode<T> nx = null;
+        int max = countNodes();
+        int x = max / 2;
+        if (position >= max) {
+            addAtEnd(value);
+            return;
+        }
+        if ( position > x ) {
+            cn = tail;
+            position = max - position;
+            while (position > 0 && cn != null) {
+                cn = cn.getPrev();
+                position--;
+            }
+        } else {
+            while (position > 0 && cn != null) {
+                cn = cn.getNext();
+                position--;
+            }
+            nx = cn.getNext();
+            cn.setNext(n);
+            n.setPrev(cn);
+            n.setNext(nx);
+            if (nx != null) {
+                nx.setPrev(n);
+            } else {
+                tail = n;
+            }
+        }
+
+
+    }
+
     public T removeFromFront() {
         if (isEmpty()) {
             return null;

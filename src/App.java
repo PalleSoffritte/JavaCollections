@@ -8,8 +8,10 @@ public class App {
         list.addAtEnd('l');
         list.addAtEnd('l');
         list.addAtEnd('o');
-        list.addAtFront('p');
-                System.out.println(list);
+        System.out.println(list);
+        list.addAtFront('A');   
+        list.addAtPosition(3, 'x');
+        System.out.println(list);
                 
         }
 }
